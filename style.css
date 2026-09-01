@@ -1,5 +1,5 @@
 /* =====================================================
-   RESET
+   RESET + BACKGROUND
 ===================================================== */
 
 * {
@@ -12,6 +12,9 @@ html {
     width: 100%;
     min-height: 100%;
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    overflow-x: hidden;
 }
 
 body {
@@ -19,41 +22,83 @@ body {
     min-height: 100%;
     font-family: Arial, Helvetica, sans-serif;
     overflow-x: hidden;
-    background: transparent;
+    background: #000;
     color: white;
     position: relative;
     isolation: isolate;
-    background: url("assets/n.jpg") center center / cover no-repeat;
-    background-attachment: fixed;
 }
 
-html,
-body {
-    width: 100%;
-    min-height: 100%;
-    background-color: #000;
+@supports (overflow: clip) {
+    html {
+        overflow-x: clip;
+    }
+
+    body {
+        overflow-x: clip;
+    }
 }
 
+@supports (padding: env(safe-area-inset-top)) {
+    body {
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+    }
+}
 
-/* =====================================================
-   FIXED NEBULA BACKGROUND VIDEO
-===================================================== */
-
-/* .background-video {
+/* The image is in HTML instead of body background to avoid
+   iPhone Safari's background-attachment/background-size issues. */
+.site-background {
     position: fixed;
     inset: 0;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
-    display: block;
-    background: url("assets/n.jpg") center center / cover no-repeat;
-    z-index: -2;
+    height: 100vh;
+    height: 100svh;
+    height: 100dvh;
+    overflow: hidden;
+    z-index: -1;
     pointer-events: none;
     user-select: none;
     -webkit-user-select: none;
-} */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+}
 
+.site-background img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center center;
+}
+
+/* =====================================================
+   FIXED HTML BACKGROUND
+   Stable background rendering for iPhone / Safari
+===================================================== */
+
+.site-background {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    height: 100dvh;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+}
+
+.site-background img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center center;
+}
 
 /* =====================================================
    HERO
@@ -245,7 +290,7 @@ body {
     color: white;
     font-size: 50px;
     letter-spacing: 4px;
-    font-weight: 00;
+    font-weight: 400;
 }
 
 
@@ -991,7 +1036,7 @@ body {
         rotate(-12deg);
     z-index: 1;
     pointer-events: none;
-    opacity: 100;
+    opacity: 1;
     filter:
         drop-shadow(0 0 15px rgba(120, 80, 255, 0.30));
     animation:
@@ -2044,7 +2089,7 @@ body {
     .mini-galaxy {
         width: 210px;
         height: 115px;
-        opacity: 100;
+        opacity: 1;
     }
 
     .galaxy-glow {
@@ -2320,7 +2365,7 @@ body {
     .mini-galaxy {
         width: 175px;
         height: 95px;
-        opacity: 100;
+        opacity: 1;
     }
 
     .galaxy-arm {
@@ -2521,7 +2566,7 @@ body {
     .mini-galaxy {
         width: 145px;
         height: 80px;
-        opacity: 100;
+        opacity: 1;
     }
 
     .galaxy-arm {
@@ -2576,10 +2621,6 @@ body {
         scroll-behavior: auto;
     }
 
-    .background-video {
-        animation: none;
-    }
-
     .marquee-track,
     .mini-galaxy,
     .galaxy-glow,
@@ -2602,42 +2643,6 @@ body {
 
 }
 
-
-/* =====================================================
-   CROSS-BROWSER SAFETY FIXES ONLY
-   Does NOT change fonts, gaps, card sizes, or spacing.
-===================================================== */
-
-html {
-    -webkit-text-size-adjust: 100%;
-    text-size-adjust: 100%;
-    overflow-x: hidden;
-}
-
-body {
-    overflow-x: hidden;
-}
-
-@supports (overflow: clip) {
-
-    html {
-        overflow-x: clip;
-    }
-
-    body {
-        overflow-x: clip;
-    }
-
-}
-
-@supports (padding: env(safe-area-inset-top)) {
-
-    body {
-        padding-left: env(safe-area-inset-left);
-        padding-right: env(safe-area-inset-right);
-    }
-
-}
 
 /* =====================================================
    OUR STORY
@@ -2697,7 +2702,8 @@ body {
 @media (max-width: 768px) {
 
     .our-story {
-        padding: 90px 20px 100px;
+        margin-top: -90px;
+        padding: 0 20px 100px;
     }
 
     .story-label {
@@ -2748,12 +2754,6 @@ body {
 
 }
 
-@media (max-width: 768px) {
-    .our-story {
-        margin-top: -90px !important;
-        padding-top: 0 !important;
-    }
-}
 
 /* =====================================================
    STORY VIDEO SOUND BUTTON
@@ -2820,32 +2820,3 @@ body {
     }
 
 }
-
-
-/* =====================================================
-   IPHONE / IOS BACKGROUND FIX
-===================================================== */
-
-@supports (-webkit-touch-callout: none) {
-
-    body {
-        background-attachment: scroll !important;
-        background-size: cover !important;
-        background-position: center center !important;
-    }
-
-}
-
-/* =====================================================
-   MOBILE BACKGROUND STABILITY FIX
-===================================================== */
-/* 
-@media (max-width: 768px) {
-
-    body {
-        background-attachment: scroll !important;
-        background-position: center center !important;
-        background-size: cover !important;
-    }
-
-} */
