@@ -513,38 +513,66 @@ scrollTopButton.addEventListener(
 
     }
 );
+/* =====================================================
+   VIDEO MUTE / UNMUTE
+===================================================== */
 
-document.addEventListener("DOMContentLoaded", function () {
+const storyVideo = document.getElementById("storyVideo");
+const soundBtn = document.getElementById("soundBtn");
 
-    const storyVideo = document.getElementById("storyVideo");
-    const soundBtn = document.getElementById("soundBtn");
+if (storyVideo && soundBtn) {
 
-    if (!storyVideo || !soundBtn) return;
+    soundBtn.addEventListener("click", async function (event) {
 
-    soundBtn.addEventListener("click", function () {
+        event.preventDefault();
+        event.stopPropagation();
 
-        if (storyVideo.muted) {
+        try {
 
-            storyVideo.muted = false;
-            storyVideo.volume = 1;
+            if (storyVideo.muted) {
 
-            soundBtn.textContent = "🔊";
-            soundBtn.setAttribute("aria-label", "Mute video");
+                // Turn sound ON
+                storyVideo.muted = false;
+                storyVideo.volume = 1;
 
-            // Make sure video continues playing
-            storyVideo.play().catch(function () {
-                console.log("Video playback requires user interaction.");
-            });
+                await storyVideo.play();
 
-        } else {
+                soundBtn.textContent = "🔊";
+                soundBtn.setAttribute(
+                    "aria-label",
+                    "Mute video"
+                );
+                soundBtn.setAttribute(
+                    "title",
+                    "Mute video"
+                );
 
-            storyVideo.muted = true;
+            } else {
 
-            soundBtn.textContent = "🔇";
-            soundBtn.setAttribute("aria-label", "Unmute video");
+                // Turn sound OFF
+                storyVideo.muted = true;
+
+                soundBtn.textContent = "🔇";
+                soundBtn.setAttribute(
+                    "aria-label",
+                    "Unmute video"
+                );
+                soundBtn.setAttribute(
+                    "title",
+                    "Unmute video"
+                );
+
+            }
+
+        } catch (error) {
+
+            console.log(
+                "Could not change video audio:",
+                error
+            );
 
         }
 
     });
 
-});
+}
