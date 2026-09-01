@@ -513,3 +513,38 @@ scrollTopButton.addEventListener(
 
     }
 );
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const storyVideo = document.getElementById("storyVideo");
+    const soundBtn = document.getElementById("soundBtn");
+
+    if (!storyVideo || !soundBtn) return;
+
+    soundBtn.addEventListener("click", function () {
+
+        if (storyVideo.muted) {
+
+            storyVideo.muted = false;
+            storyVideo.volume = 1;
+
+            soundBtn.textContent = "🔊";
+            soundBtn.setAttribute("aria-label", "Mute video");
+
+            // Make sure video continues playing
+            storyVideo.play().catch(function () {
+                console.log("Video playback requires user interaction.");
+            });
+
+        } else {
+
+            storyVideo.muted = true;
+
+            soundBtn.textContent = "🔇";
+            soundBtn.setAttribute("aria-label", "Unmute video");
+
+        }
+
+    });
+
+});
