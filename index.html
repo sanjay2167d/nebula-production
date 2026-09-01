@@ -83,8 +83,7 @@
         <div class="story-content">
 
             <p class="story-label">
-                OUR STORY
-            </p>
+𝖲𝖧𝖮𝖶 𝖱𝖤𝖤𝖫            </p>
 
             <!-- <h2>
                 EVERY STORY<br>
@@ -92,25 +91,31 @@
                 SOMEWHERE.
             </h2> -->
 
-            <div class="story-video">
+           <div class="story-video">
 
-                <video
-                    autoplay
-                    muted
-                    playsinline
-                    loop
-                    preload="auto"
-                    poster="assets/story-poster.jpg">
+    <video
+        id="storyVideo"
+        autoplay
+        muted
+        playsinline
+        loop
+        preload="auto"
+        poster="assets/story-poster.jpg">
 
-                    <source
-                        src="assets/v.mp4"
-                        type="video/mp4">
+        <source src="assets/v.mp4" type="video/mp4">
 
-                    Your browser does not support the video tag.
+        Your browser does not support the video tag.
+    </video>
 
-                </video>
+    <button
+        id="soundBtn"
+        class="sound-btn"
+        type="button"
+        aria-label="Unmute video">
+        🔇
+    </button>
 
-            </div>
+</div>
 
         </div>
 
@@ -1031,6 +1036,32 @@
 
 
     <script src="script.js"></script>
+
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const video = document.querySelector(".story-video");
+    const soundBtn = document.getElementById("soundBtn");
+
+    if (!video || !soundBtn) return;
+
+    soundBtn.addEventListener("click", function () {
+
+        if (video.muted) {
+            video.muted = false;
+            video.volume = 1;
+            soundBtn.textContent = "🔊";
+            soundBtn.setAttribute("aria-label", "Mute video");
+        } else {
+            video.muted = true;
+            soundBtn.textContent = "🔇";
+            soundBtn.setAttribute("aria-label", "Unmute video");
+        }
+
+    });
+
+});
+</script>
 
 </body>
 
