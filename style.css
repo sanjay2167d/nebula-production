@@ -2772,7 +2772,7 @@ body {
     height: 45px;
 
     border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
+    border-radius: 100%;
 
     background: rgba(0, 0, 0, 0.55);
     color: white;
@@ -2819,4 +2819,274 @@ body {
         font-size: 16px;
     }
 
+}
+
+
+
+/* =========================================================
+   PURPLE STAR BACKGROUND
+   ========================================================= */
+
+#twinkle-stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 0;
+}
+
+
+/* =========================================================
+   BASIC STAR
+   ========================================================= */
+
+.twinkle-star {
+    position: absolute;
+
+    display: block;
+
+    background: #ffffff;
+
+    opacity: 0;
+
+    /*
+       Sharp 4-point star
+    */
+    clip-path: polygon(
+        50% 0%,
+        57% 43%,
+        100% 50%,
+        57% 57%,
+        50% 100%,
+        43% 57%,
+        0% 50%,
+        43% 43%
+    );
+
+    /*
+       LIGHTWEIGHT PURPLE GLOW
+    */
+    box-shadow:
+        0 0 3px #ffffff,
+        0 0 7px #e8b5ff,
+        0 0 12px #b83dff;
+
+    /*
+       Only opacity and scale animate
+    */
+    animation-name: purpleStar;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+
+    /*
+       Helps browser performance
+    */
+    will-change: opacity, transform;
+}
+
+
+/* =========================================================
+   SMALL STARS
+   ========================================================= */
+
+.twinkle-star.small {
+
+    width: 4px;
+    height: 4px;
+
+    box-shadow:
+        0 0 3px #ffffff,
+        0 0 6px #e5aaff,
+        0 0 10px #a82cff;
+}
+
+
+/* =========================================================
+   MEDIUM STARS
+   ========================================================= */
+
+.twinkle-star.medium {
+
+    width: 8px;
+    height: 8px;
+
+    box-shadow:
+        0 0 4px #ffffff,
+        0 0 8px #eabaff,
+        0 0 14px #bd42ff,
+        0 0 20px #8d20d9;
+}
+
+
+/* =========================================================
+   LARGE STARS
+   ========================================================= */
+
+.twinkle-star.large {
+
+    width: 13px;
+    height: 13px;
+
+    box-shadow:
+        0 0 5px #ffffff,
+        0 0 10px #f0caff,
+        0 0 18px #c34cff,
+        0 0 28px #8e20df;
+}
+
+
+/* =========================================================
+   STAR ANIMATION
+   ========================================================= */
+
+@keyframes purpleStar {
+
+    /*
+       START INVISIBLE
+    */
+    0% {
+        opacity: 0;
+        transform: scale(0.2);
+    }
+
+
+    /*
+       Stay invisible
+    */
+    25% {
+        opacity: 0;
+        transform: scale(0.25);
+    }
+
+
+    /*
+       Begin appearing
+    */
+    38% {
+        opacity: 0.45;
+        transform: scale(0.65);
+    }
+
+
+    /*
+       Bright purple/white
+    */
+    46% {
+        opacity: 0.85;
+        transform: scale(0.9);
+    }
+
+
+    /*
+       MAXIMUM BRIGHTNESS
+    */
+    52% {
+        opacity: 1;
+        transform: scale(1.15);
+    }
+
+
+    /*
+       Start fading
+    */
+    62% {
+        opacity: 0.6;
+        transform: scale(0.9);
+    }
+
+
+    /*
+       Almost gone
+    */
+    75% {
+        opacity: 0.18;
+        transform: scale(0.5);
+    }
+
+
+    /*
+       Completely gone
+    */
+    88% {
+        opacity: 0;
+        transform: scale(0.2);
+    }
+
+
+    /*
+       Wait before next appearance
+    */
+    100% {
+        opacity: 0;
+        transform: scale(0.2);
+    }
+}
+
+
+/* =========================================================
+   KEEP YOUR WEBSITE ABOVE THE STARS
+   ========================================================= */
+
+header,
+nav,
+main,
+section,
+.hero,
+.content,
+.showreel,
+video,
+img,
+button,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   EXTRA SAFETY FOR VIDEO / SHOWREEL
+   ========================================================= */
+
+video {
+    position: relative;
+    z-index: 3;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .twinkle-star.small {
+        width: 9px;
+        height: 9px;
+    }
+
+    .twinkle-star.medium {
+        width: 12px;
+        height: 12px;
+    }
+
+    .twinkle-star.large {
+        width: 15px;
+        height: 15px;
+    }
 }
