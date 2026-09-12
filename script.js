@@ -25,13 +25,17 @@ const contactForm =
    OPEN CONTACT
 ===================================================== */
 
-contactBtn.addEventListener("click", function () {
+if (contactBtn && contactOverlay) {
 
-    contactOverlay.classList.add("active");
+    contactBtn.addEventListener("click", function () {
 
-    document.body.style.overflow = "hidden";
+        contactOverlay.classList.add("active");
 
-});
+        document.body.style.overflow = "hidden";
+
+    });
+
+}
 
 
 /* =====================================================
@@ -40,6 +44,8 @@ contactBtn.addEventListener("click", function () {
 
 function closeContact() {
 
+    if (!contactOverlay) return;
+
     contactOverlay.classList.remove("active");
 
     document.body.style.overflow = "";
@@ -47,26 +53,34 @@ function closeContact() {
 }
 
 
-contactClose.addEventListener("click", function () {
+if (contactClose) {
 
-    closeContact();
+    contactClose.addEventListener("click", function () {
 
-});
+        closeContact();
+
+    });
+
+}
 
 
 /* =====================================================
    CLICK OUTSIDE
 ===================================================== */
 
-contactOverlay.addEventListener("click", function (event) {
+if (contactOverlay) {
 
-    if (event.target === contactOverlay) {
+    contactOverlay.addEventListener("click", function (event) {
 
-        closeContact();
+        if (event.target === contactOverlay) {
 
-    }
+            closeContact();
 
-});
+        }
+
+    });
+
+}
 
 
 /* =====================================================
@@ -88,62 +102,64 @@ document.addEventListener("keydown", function (event) {
    SEND CONTACT FORM TO WHATSAPP
 ===================================================== */
 
-contactForm.addEventListener("submit", function (event) {
+if (contactForm) {
 
-    event.preventDefault();
+    contactForm.addEventListener("submit", function (event) {
 
-
-    /* =================================================
-       WHATSAPP NUMBER
-    ================================================= */
-
-    const whatsappNumber = "919789976929";
+        event.preventDefault();
 
 
-    /* =================================================
-       GET FORM VALUES
-    ================================================= */
+        /* =================================================
+           WHATSAPP NUMBER
+        ================================================= */
 
-    const name =
-        document.getElementById("fullName").value.trim();
-
-
-    const email =
-        document.getElementById("email").value.trim();
+        const whatsappNumber = "919789976929";
 
 
-    const phone =
-        document.getElementById("phone").value.trim();
+        /* =================================================
+           GET FORM VALUES
+        ================================================= */
+
+        const name =
+            document.getElementById("fullName").value.trim();
 
 
-    const company =
-        document.getElementById("company").value.trim()
-        || "Not provided";
+        const email =
+            document.getElementById("email").value.trim();
 
 
-    const projectType =
-        document.getElementById("projectType").value;
+        const phone =
+            document.getElementById("phone").value.trim();
 
 
-    const projectDetails =
-        document.getElementById("projectDetails").value.trim();
+        const company =
+            document.getElementById("company").value.trim()
+            || "Not provided";
 
 
-    const budget =
-        document.getElementById("budget").value
-        || "Not provided";
+        const projectType =
+            document.getElementById("projectType").value;
 
 
-    const contactMethod =
-        document.getElementById("contactMethod").value
-        || "Not specified";
+        const projectDetails =
+            document.getElementById("projectDetails").value.trim();
 
 
-    /* =================================================
-       WHATSAPP MESSAGE
-    ================================================= */
+        const budget =
+            document.getElementById("budget").value
+            || "Not provided";
 
-    const message =
+
+        const contactMethod =
+            document.getElementById("contactMethod").value
+            || "Not specified";
+
+
+        /* =================================================
+           WHATSAPP MESSAGE
+        ================================================= */
+
+        const message =
 
 `*NEW PROJECT ENQUIRY*
 
@@ -176,28 +192,29 @@ ${contactMethod}
 Sent through The Nebula Production website.`;
 
 
-    /* =================================================
-       WHATSAPP URL
-    ================================================= */
+        /* =================================================
+           WHATSAPP URL
+        ================================================= */
 
-    const whatsappURL =
-        "https://wa.me/" +
-        whatsappNumber +
-        "?text=" +
-        encodeURIComponent(message);
+        const whatsappURL =
+            "https://wa.me/" +
+            whatsappNumber +
+            "?text=" +
+            encodeURIComponent(message);
 
 
-    /* =================================================
-       OPEN WHATSAPP
-    ================================================= */
+        /* =================================================
+           OPEN WHATSAPP
+        ================================================= */
 
-    window.open(
-        whatsappURL,
-        "_blank"
-    );
+        window.open(
+            whatsappURL,
+            "_blank"
+        );
 
-});
+    });
 
+}
 
 
 /* =====================================================
@@ -234,11 +251,25 @@ const totalWorks =
 
 
 /* =====================================================
+   AUTOMATIC SLIDER VARIABLES
+===================================================== */
+
+let autoSlideTimer = null;
+
+/* Change poster every 4 seconds */
+const autoSlideDelay = 2000;
+
+
+/* =====================================================
    TOTAL NUMBER
 ===================================================== */
 
-workTotal.textContent =
-    String(totalWorks).padStart(2, "0");
+if (workTotal) {
+
+    workTotal.textContent =
+        String(totalWorks).padStart(2, "0");
+
+}
 
 
 /* =====================================================
@@ -246,6 +277,13 @@ workTotal.textContent =
 ===================================================== */
 
 function updateWorks() {
+
+    if (
+        !worksTrack ||
+        !workPosters.length
+    ) {
+        return;
+    }
 
 
     /* -----------------------------------------------
@@ -271,8 +309,12 @@ function updateWorks() {
        CURRENT NUMBER
     ----------------------------------------------- */
 
-    workCurrent.textContent =
-        String(currentWork + 1).padStart(2, "0");
+    if (workCurrent) {
+
+        workCurrent.textContent =
+            String(currentWork + 1).padStart(2, "0");
+
+    }
 
 
     /* -----------------------------------------------
@@ -294,6 +336,9 @@ function updateWorks() {
 
     const wrapper =
         worksTrack.parentElement;
+
+
+    if (!wrapper) return;
 
 
     const wrapperWidth =
@@ -321,6 +366,8 @@ function updateWorks() {
 
 function nextWork() {
 
+    if (totalWorks <= 0) return;
+
     currentWork++;
 
     if (currentWork >= totalWorks) {
@@ -340,6 +387,8 @@ function nextWork() {
 
 function previousWork() {
 
+    if (totalWorks <= 0) return;
+
     currentWork--;
 
     if (currentWork < 0) {
@@ -354,19 +403,101 @@ function previousWork() {
 
 
 /* =====================================================
+   AUTOMATIC SLIDER
+===================================================== */
+
+function startAutoSlide() {
+
+    /* Stop any existing timer first */
+    stopAutoSlide();
+
+
+    if (totalWorks <= 1) {
+        return;
+    }
+
+
+    autoSlideTimer = setInterval(function () {
+
+        currentWork++;
+
+        if (currentWork >= totalWorks) {
+
+            currentWork = 0;
+
+        }
+
+        updateWorks();
+
+    }, autoSlideDelay);
+
+}
+
+
+/* =====================================================
+   STOP AUTOMATIC SLIDER
+===================================================== */
+
+function stopAutoSlide() {
+
+    if (autoSlideTimer) {
+
+        clearInterval(autoSlideTimer);
+
+        autoSlideTimer = null;
+
+    }
+
+}
+
+
+/* =====================================================
+   RESTART AUTOMATIC SLIDER
+===================================================== */
+
+function restartAutoSlide() {
+
+    startAutoSlide();
+
+}
+
+
+/* =====================================================
    BUTTONS
 ===================================================== */
 
-worksNext.addEventListener(
-    "click",
-    nextWork
-);
+if (worksNext) {
+
+    worksNext.addEventListener(
+        "click",
+        function () {
+
+            nextWork();
+
+            /* Restart 4-second timer */
+            restartAutoSlide();
+
+        }
+    );
+
+}
 
 
-worksPrev.addEventListener(
-    "click",
-    previousWork
-);
+if (worksPrev) {
+
+    worksPrev.addEventListener(
+        "click",
+        function () {
+
+            previousWork();
+
+            /* Restart 4-second timer */
+            restartAutoSlide();
+
+        }
+    );
+
+}
 
 
 /* =====================================================
@@ -383,6 +514,8 @@ document.addEventListener(
 
             nextWork();
 
+            restartAutoSlide();
+
         }
 
 
@@ -391,6 +524,8 @@ document.addEventListener(
         ) {
 
             previousWork();
+
+            restartAutoSlide();
 
         }
 
@@ -407,34 +542,38 @@ let touchStartX = 0;
 let touchEndX = 0;
 
 
-worksTrack.addEventListener(
-    "touchstart",
-    function (event) {
+if (worksTrack) {
 
-        touchStartX =
-            event.touches[0].clientX;
+    worksTrack.addEventListener(
+        "touchstart",
+        function (event) {
 
-    },
-    {
-        passive: true
-    }
-);
+            touchStartX =
+                event.touches[0].clientX;
+
+        },
+        {
+            passive: true
+        }
+    );
 
 
-worksTrack.addEventListener(
-    "touchend",
-    function (event) {
+    worksTrack.addEventListener(
+        "touchend",
+        function (event) {
 
-        touchEndX =
-            event.changedTouches[0].clientX;
+            touchEndX =
+                event.changedTouches[0].clientX;
 
-        handleSwipe();
+            handleSwipe();
 
-    },
-    {
-        passive: true
-    }
-);
+        },
+        {
+            passive: true
+        }
+    );
+
+}
 
 
 function handleSwipe() {
@@ -443,20 +582,28 @@ function handleSwipe() {
         touchStartX - touchEndX;
 
 
-    /* SWIPE LEFT */
+    /* -----------------------------------------------
+       SWIPE LEFT
+    ----------------------------------------------- */
 
     if (difference > 50) {
 
         nextWork();
 
+        restartAutoSlide();
+
     }
 
 
-    /* SWIPE RIGHT */
+    /* -----------------------------------------------
+       SWIPE RIGHT
+    ----------------------------------------------- */
 
     if (difference < -50) {
 
         previousWork();
+
+        restartAutoSlide();
 
     }
 
@@ -487,6 +634,9 @@ window.addEventListener(
 
         updateWorks();
 
+        /* Start automatic sliding */
+        startAutoSlide();
+
     }
 );
 
@@ -499,90 +649,117 @@ const scrollTopButton =
     document.querySelector(".scroll-top");
 
 
-scrollTopButton.addEventListener(
-    "click",
-    function () {
+if (scrollTopButton) {
 
-        window.scrollTo({
+    scrollTopButton.addEventListener(
+        "click",
+        function () {
 
-            top: 0,
+            window.scrollTo({
 
-            behavior: "smooth"
+                top: 0,
 
-        });
+                behavior: "smooth"
 
-    }
-);
-/* =====================================================
-   VIDEO MUTE / UNMUTE
-===================================================== */
-
-const storyVideo = document.getElementById("storyVideo");
-const soundBtn = document.getElementById("soundBtn");
-
-if (storyVideo && soundBtn) {
-
-    soundBtn.addEventListener("click", async function (event) {
-
-        event.preventDefault();
-        event.stopPropagation();
-
-        try {
-
-            if (storyVideo.muted) {
-
-                // Turn sound ON
-                storyVideo.muted = false;
-                storyVideo.volume = 1;
-
-                await storyVideo.play();
-
-                soundBtn.textContent = "🔊";
-                soundBtn.setAttribute(
-                    "aria-label",
-                    "Mute video"
-                );
-                soundBtn.setAttribute(
-                    "title",
-                    "Mute video"
-                );
-
-            } else {
-
-                // Turn sound OFF
-                storyVideo.muted = true;
-
-                soundBtn.textContent = "🔇";
-                soundBtn.setAttribute(
-                    "aria-label",
-                    "Unmute video"
-                );
-                soundBtn.setAttribute(
-                    "title",
-                    "Unmute video"
-                );
-
-            }
-
-        } catch (error) {
-
-            console.log(
-                "Could not change video audio:",
-                error
-            );
+            });
 
         }
-
-    });
+    );
 
 }
 
 
-/* =========================================
-   BRIGHT PURPLE TWINKLING STARS
-   ========================================= */
+/* =====================================================
+   VIDEO MUTE / UNMUTE
+===================================================== */
 
-const starContainer = document.getElementById("twinkle-stars");
+const storyVideo =
+    document.getElementById("storyVideo");
+
+const soundBtn =
+    document.getElementById("soundBtn");
+
+
+if (storyVideo && soundBtn) {
+
+    soundBtn.addEventListener(
+        "click",
+        async function (event) {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+
+            try {
+
+                if (storyVideo.muted) {
+
+                    /* Turn sound ON */
+
+                    storyVideo.muted = false;
+
+                    storyVideo.volume = 1;
+
+                    await storyVideo.play();
+
+
+                    soundBtn.textContent = "🔊";
+
+                    soundBtn.setAttribute(
+                        "aria-label",
+                        "Mute video"
+                    );
+
+                    soundBtn.setAttribute(
+                        "title",
+                        "Mute video"
+                    );
+
+
+                } else {
+
+                    /* Turn sound OFF */
+
+                    storyVideo.muted = true;
+
+
+                    soundBtn.textContent = "🔇";
+
+                    soundBtn.setAttribute(
+                        "aria-label",
+                        "Unmute video"
+                    );
+
+                    soundBtn.setAttribute(
+                        "title",
+                        "Unmute video"
+                    );
+
+                }
+
+            } catch (error) {
+
+                console.log(
+                    "Could not change video audio:",
+                    error
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   BRIGHT PURPLE TWINKLING STARS
+===================================================== */
+
+const starContainer =
+    document.getElementById("twinkle-stars");
+
 
 if (starContainer) {
 
@@ -593,14 +770,22 @@ if (starContainer) {
 
     for (let i = 0; i < starCount; i++) {
 
-        const star = document.createElement("span");
+        const star =
+            document.createElement("span");
 
-        star.classList.add("twinkle-star");
+
+        star.classList.add(
+            "twinkle-star"
+        );
 
 
-        /* RANDOM STAR SIZE */
+        /* -----------------------------------------
+           RANDOM STAR SIZE
+        ----------------------------------------- */
 
-        const size = Math.random();
+        const size =
+            Math.random();
+
 
         if (size < 0.55) {
 
@@ -613,28 +798,73 @@ if (starContainer) {
         } else {
 
             star.classList.add("large");
+
         }
 
 
-        /* RANDOM POSITION */
+        /* -----------------------------------------
+           RANDOM POSITION
+        ----------------------------------------- */
 
-        star.style.left = Math.random() * 100 + "%";
-        star.style.top = Math.random() * 100 + "%";
+        star.style.left =
+            Math.random() * 100 + "%";
+
+        star.style.top =
+            Math.random() * 100 + "%";
 
 
-        /* DIFFERENT SPEED */
+        /* -----------------------------------------
+           DIFFERENT SPEED
+        ----------------------------------------- */
 
         star.style.animationDuration =
             (3.2 + Math.random() * 2.5) + "s";
 
 
-        /* DIFFERENT START TIME
-           prevents all stars glowing together */
+        /* -----------------------------------------
+           DIFFERENT START TIME
+           Prevents all stars glowing together
+        ----------------------------------------- */
 
         star.style.animationDelay =
             (Math.random() * 8) + "s";
 
 
         starContainer.appendChild(star);
+
     }
+
 }
+
+
+/* =====================================================
+   CINEMATIC SECTION SCROLL REVEAL
+   ===================================================== */
+
+const cinematicSections = document.querySelectorAll(
+    ".what-we-do, .works-section, .contact-section, .footer"
+);
+
+const cinematicObserver = new IntersectionObserver(
+    function (entries) {
+
+        entries.forEach(function (entry) {
+
+            if (entry.isIntersecting) {
+
+                entry.target.classList.add("section-visible");
+
+            }
+
+        });
+
+    },
+    {
+        threshold: 0.15
+    }
+);
+
+
+cinematicSections.forEach(function (section) {
+    cinematicObserver.observe(section);
+});
