@@ -576,3 +576,65 @@ if (storyVideo && soundBtn) {
     });
 
 }
+
+
+/* =========================================
+   BRIGHT PURPLE TWINKLING STARS
+   ========================================= */
+
+const starContainer = document.getElementById("twinkle-stars");
+
+if (starContainer) {
+
+    /* Number of stars */
+
+    const starCount = 100;
+
+
+    for (let i = 0; i < starCount; i++) {
+
+        const star = document.createElement("span");
+
+        star.classList.add("twinkle-star");
+
+
+        /* RANDOM STAR SIZE */
+
+        const size = Math.random();
+
+        if (size < 0.55) {
+
+            star.classList.add("small");
+
+        } else if (size < 0.88) {
+
+            star.classList.add("medium");
+
+        } else {
+
+            star.classList.add("large");
+        }
+
+
+        /* RANDOM POSITION */
+
+        star.style.left = Math.random() * 100 + "%";
+        star.style.top = Math.random() * 100 + "%";
+
+
+        /* DIFFERENT SPEED */
+
+        star.style.animationDuration =
+            (3.2 + Math.random() * 2.5) + "s";
+
+
+        /* DIFFERENT START TIME
+           prevents all stars glowing together */
+
+        star.style.animationDelay =
+            (Math.random() * 8) + "s";
+
+
+        starContainer.appendChild(star);
+    }
+}
