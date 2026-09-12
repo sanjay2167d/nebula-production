@@ -155,6 +155,14 @@ body {
     height: 140px;
     object-fit: contain;
     margin-top: 40px;
+
+    opacity: 1;
+
+    filter:
+        brightness(1.2)
+        contrast(1.15)
+        drop-shadow(0 0 5px rgba(255,255,255,0.35))
+        drop-shadow(0 0 12px rgba(150,90,255,0.35));
 }
 
 
@@ -361,6 +369,14 @@ body {
     font-weight: 500;
     line-height: 0.92;
     letter-spacing: 3px;
+
+     opacity: 1;
+
+    filter:
+        brightness(1.5)
+        contrast(1.18)
+        drop-shadow(0 0 5px rgba(255,255,255,0.35))
+        drop-shadow(0 0 12px rgba(150,90,255,0.35));
 }
 
 
@@ -514,6 +530,13 @@ body {
     font-size: 40px;
     font-weight: 900;
     letter-spacing: 5px;
+     opacity: 1;
+
+    filter:
+        brightness(1.2)
+        contrast(1.15)
+        drop-shadow(0 0 5px rgba(255,255,255,0.35))
+        drop-shadow(0 0 12px rgba(150,90,255,0.35));
 }
 
 .works-heading h2 {
@@ -522,6 +545,14 @@ body {
     font-weight: 500;
     line-height: 0.95;
     letter-spacing: 1px;
+
+     opacity: 1;
+
+    filter:
+        brightness(1.5)
+        contrast(1.18)
+        drop-shadow(0 0 5px rgba(255,255,255,0.35))
+        drop-shadow(0 0 12px rgba(150,90,255,0.35));
 }
 
 
@@ -805,6 +836,13 @@ body {
     font-weight: 500;
     line-height: 1;
     letter-spacing: -2.5px;
+     opacity: 1;
+
+    filter:
+        brightness(1.5)
+        contrast(1.18)
+        drop-shadow(0 0 5px rgba(255,255,255,0.35))
+        drop-shadow(0 0 12px rgba(150,90,255,0.35));
 }
 
 .services-statement > .statement-intro::before {
@@ -1325,6 +1363,7 @@ body {
     letter-spacing: -2px;
     text-shadow:
         0 2px 15px rgba(0,0,0,0.8);
+        border-radius: 100%;
 }
 
 .statement-word {
@@ -1332,11 +1371,11 @@ body {
     z-index: 8;
     margin-top: 16px;
     color: rgba(220, 205, 240, 0.78);
-    font-size: clamp(64px, 1.5vw, 69px);
+    font-size: clamp(44px, 1.5vw, 49px);
     font-weight: 400;
     line-height: 1;
     letter-spacing: 3px;
-    text-transform: lowercase;
+    border-radius: 10%;
     text-shadow:
         0 2px 20px rgba(0,0,0,0.9);
 }
@@ -1438,6 +1477,14 @@ body {
     letter-spacing: 3px;
     font-weight: 900;
     text-transform: uppercase;
+
+    opacity: 1;
+
+    filter:
+        brightness(1.2)
+        contrast(1.15)
+        drop-shadow(0 0 5px rgba(255,255,255,0.35))
+        drop-shadow(0 0 12px rgba(150,90,255,0.35));
 }
 
 
@@ -1943,6 +1990,13 @@ body {
         margin-bottom: 14px;
         font-size: 15px;
         letter-spacing: 4px;
+         opacity: 1;
+
+    filter:
+        brightness(1.9)
+        contrast(1.30)
+        drop-shadow(0 0 5px rgba(255,255,255,0.35))
+        drop-shadow(0 0 12px rgba(150,90,255,0.35));
     }
 
     .services-heading h2 {
@@ -2266,6 +2320,13 @@ body {
 
     .services-heading h2 {
         font-size: 35px;
+ opacity: 1;
+
+    filter:
+        brightness(1.5)
+        contrast(1.18)
+        drop-shadow(0 0 5px rgba(255,255,255,0.35))
+        drop-shadow(0 0 12px rgba(150,90,255,0.35));
     }
 
     .service-card {
@@ -2300,6 +2361,14 @@ body {
 
     .works-heading h2 {
         font-size: 25px;
+
+         opacity: 1;
+
+    filter:
+        brightness(1.5)
+        contrast(1.18)
+        drop-shadow(0 0 5px rgba(255,255,255,0.35))
+        drop-shadow(0 0 12px rgba(150,90,255,0.35));
     }
 
     .work-poster {
@@ -2342,6 +2411,14 @@ body {
         font-size: 25px;
         letter-spacing: 2px;
         font-weight: 900;
+
+         opacity: 1;
+
+    filter:
+        brightness(1.5)
+        contrast(1.18)
+        drop-shadow(0 0 5px rgba(255,255,255,0.35))
+        drop-shadow(0 0 12px rgba(150,90,255,0.35));
     }
 
     .statement-card {
@@ -2355,7 +2432,7 @@ body {
     }
 
     .statement-word {
-        font-size: 40px;
+        font-size: 30px;
         font-weight: bold;
     }
 
@@ -2742,6 +2819,13 @@ body {
         font-size: 25px;
         letter-spacing: 3px;
         font-weight: 900;
+         opacity: 1;
+
+    filter:
+        brightness(1.2)
+        contrast(1.15)
+        drop-shadow(0 0 5px rgba(255,255,255,0.35))
+        drop-shadow(0 0 12px rgba(150,90,255,0.35));
     }
 
     .story-content h2 {
@@ -3089,4 +3173,211 @@ video {
         width: 15px;
         height: 15px;
     }
+}
+
+
+/* =====================================================
+   AUTOMATIC WORKS SLIDER + POSTER GLOW
+===================================================== */
+
+/* Smooth movement */
+.works-track {
+    transition: transform 0.8s ease-in-out;
+}
+
+/* Active poster gets a soft purple glow */
+.work-poster.active {
+    box-shadow:
+        0 0 8px rgba(180, 100, 255, 0.45),
+        0 0 18px rgba(150, 70, 255, 0.30);
+
+    border-color: rgba(210, 170, 255, 0.65);
+
+    transition:
+        transform 0.8s ease,
+        box-shadow 0.8s ease,
+        opacity 0.8s ease;
+}
+
+/* Other posters remain slightly dim */
+.work-poster:not(.active) {
+    opacity: 0.55;
+
+    transition:
+        transform 0.8s ease,
+        box-shadow 0.8s ease,
+        opacity 0.8s ease;
+}
+
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+    .work-poster.active {
+    box-shadow:
+        0 0 12px rgba(210, 100, 255, 0.75),
+        0 0 30px rgba(180, 70, 255, 0.60),
+        0 0 50px rgba(150, 50, 255, 0.35);
+
+    border-color: rgba(220, 180, 255, 0.8);
+}
+
+}
+
+
+/* =====================================================
+   CINEMATIC SECTION SCROLL REVEAL
+   ===================================================== */
+
+/* Initial hidden state */
+.what-we-do,
+.works-section,
+.contact-section,
+.footer {
+    opacity: 0;
+    transform: translateY(35px);
+    transition:
+        opacity 1s ease,
+        transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* When section enters the screen */
+.what-we-do.section-visible,
+.works-section.section-visible,
+.contact-section.section-visible,
+.footer.section-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* =====================================================
+   WORKS CONTENT - SLIGHTLY DELAYED
+   ===================================================== */
+
+.works-section .works-title,
+.works-section .works-subtitle {
+    opacity: 0;
+    transform: translateY(25px);
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.works-section.section-visible .works-title,
+.works-section.section-visible .works-subtitle {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* =====================================================
+   POSTERS - CINEMATIC APPEARANCE
+   ===================================================== */
+
+.works-section .work-poster {
+    opacity: 0;
+    transform: translateY(25px) scale(0.97);
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.4s ease;
+}
+
+
+/* Posters appear after section enters */
+.works-section.section-visible .work-poster {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+
+/* Stagger the posters */
+.works-section.section-visible .work-poster:nth-child(1) {
+    transition-delay: 0.15s;
+}
+
+.works-section.section-visible .work-poster:nth-child(2) {
+    transition-delay: 0.25s;
+}
+
+.works-section.section-visible .work-poster:nth-child(3) {
+    transition-delay: 0.35s;
+}
+
+.works-section.section-visible .work-poster:nth-child(4) {
+    transition-delay: 0.45s;
+}
+
+.works-section.section-visible .work-poster:nth-child(5) {
+    transition-delay: 0.55s;
+}
+
+.works-section.section-visible .work-poster:nth-child(6) {
+    transition-delay: 0.65s;
+}
+
+
+/* =====================================================
+   MOBILE - KEEP IT LIGHT
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+    .what-we-do,
+    .works-section,
+    .contact-section,
+    .footer {
+        transform: translateY(22px);
+        transition-duration: 0.8s;
+    }
+
+    .works-section .work-poster {
+        transform: translateY(18px) scale(0.98);
+        transition-duration: 0.7s;
+    }
+
+}
+
+
+/* =====================================================
+   CINEMATIC NEBULA BACKGROUND MOVEMENT
+   ===================================================== */
+
+.site-background img {
+    animation: nebulaDrift 35s ease-in-out infinite alternate;
+    transform-origin: center center;
+    will-change: transform;
+}
+
+
+/* Slow and subtle nebula movement */
+
+@keyframes nebulaDrift {
+
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.035) translate3d(-0.4%, 0.25%, 0);
+    }
+
+    100% {
+        transform: scale(1.07) translate3d(0.5%, -0.3%, 0);
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE - EVEN SLOWER
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+    .site-background img {
+        animation-duration: 15s;
+    }
+
 }
