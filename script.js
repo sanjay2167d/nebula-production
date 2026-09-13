@@ -868,3 +868,32 @@ const cinematicObserver = new IntersectionObserver(
 cinematicSections.forEach(function (section) {
     cinematicObserver.observe(section);
 });
+
+
+/* =====================================================
+   CAMERA REEL - PAUSE WHEN OFFSCREEN
+===================================================== */
+
+const cameraReelTrack = document.querySelector(".camera-reel-track");
+
+if (cameraReelTrack) {
+
+    const cameraObserver = new IntersectionObserver(
+        function (entries) {
+
+            entries.forEach(function (entry) {
+
+                cameraReelTrack.style.animationPlayState =
+                    entry.isIntersecting ? "running" : "paused";
+
+            });
+
+        },
+        { threshold: 0.1 }
+    );
+
+    cameraObserver.observe(cameraReelTrack);
+
+}
+
+
