@@ -2777,11 +2777,10 @@ body {
 ===================================================== */
 
 @media (max-width: 768px) {
-
-    .our-story {
-        margin-top: -90px;
-        padding: 0 20px 100px;
-    }
+.our-story {
+    margin-top: 0;
+    padding: 0 20px 100px;
+}
 
     .story-label {
         font-size: 12px;
@@ -3378,6 +3377,238 @@ video {
 
     .site-background img {
         animation-duration: 15s;
+    }
+
+}
+
+/* =====================================================
+   FIX HERO GAP ON MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+
+    .hero {
+        height: auto;
+        min-height: 0;
+    }
+
+    .hero-content {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+
+        padding-top: 105px;
+        padding-bottom: 40px;
+    }
+
+    .our-story {
+        padding-top: 0;
+    }
+
+}
+
+/* =====================================================
+   CAMERA TRANSITION (marquee reel)
+===================================================== */
+
+.camera-reel {
+    position: relative;
+    width: 100%;
+    height: 210px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    isolation: isolate;
+    background: radial-gradient(
+        ellipse 60% 130% at 50% 50%,
+        rgba(140, 70, 230, 0.07),
+        transparent 70%
+    );
+    mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 8%,
+        black 92%,
+        transparent
+    );
+    -webkit-mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 8%,
+        black 92%,
+        transparent
+    );
+}
+
+.camera-reel-track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    animation: reelScroll 32s linear infinite;
+    will-change: transform;
+}
+
+.camera-reel-set {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 46px;
+    padding-right: 46px;
+}
+
+@keyframes reelScroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+.reel-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.reel-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background:
+        radial-gradient(
+            circle,
+            rgba(150, 90, 255, 0.30),
+            rgba(80, 30, 150, 0.12) 60%,
+            transparent 80%
+        );
+    border: 1px solid rgba(200, 160, 255, 0.55);
+    color: rgba(255, 255, 255, 1);
+    filter:
+        drop-shadow(0 0 10px rgba(255,255,255,0.45))
+        drop-shadow(0 0 22px rgba(150,90,255,0.85));
+    animation: badgePulse 3.2s ease-in-out infinite;
+}
+
+
+.reel-badge img {
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 6px rgba(255,255,255,0.4));
+}
+
+@keyframes badgePulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(150, 90, 255, 0.0);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 22px 4px rgba(150, 90, 255, 0.18);
+        transform: scale(1.04);
+    }
+}
+
+.camera-reel-set .reel-item:nth-child(1) .reel-badge { animation-delay: 0s; }
+.camera-reel-set .reel-item:nth-child(3) .reel-badge { animation-delay: 0.6s; }
+.camera-reel-set .reel-item:nth-child(5) .reel-badge { animation-delay: 1.2s; }
+.camera-reel-set .reel-item:nth-child(7) .reel-badge { animation-delay: 1.8s; }
+.camera-reel-set .reel-item:nth-child(9) .reel-badge { animation-delay: 2.4s; }
+
+.reel-text {
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: rgba(235, 220, 255, 0.98);
+    text-shadow:
+        0 0 14px rgba(119, 10, 235, 0.7),
+        0 2px 10px rgba(154, 36, 175, 0.7);
+}
+
+.reel-dot {
+    color: rgba(190, 140, 255, 0.55);
+    font-size: 14px;
+}
+
+/* -----------------------------------------------------
+   MOBILE
+----------------------------------------------------- */
+
+@media (max-width: 768px) {
+
+    .camera-reel {
+        height: 140px;
+    }
+
+    .camera-reel-set {
+        gap: 30px;
+        padding-right: 30px;
+    }
+
+    .reel-item {
+        gap: 10px;
+    }
+
+    .reel-badge {
+        width: 58px;
+        height: 58px;
+    }
+
+.reel-badge img {
+    width: 26px;
+    height: 26px;
+}
+    .reel-text {
+        font-size: 14px;
+        letter-spacing: 3px;
+    }
+
+    .reel-dot {
+        font-size: 10px;
+    }
+
+    .camera-reel-track {
+        animation-duration: 22s;
+    }
+
+}
+
+/* -----------------------------------------------------
+   REDUCED MOTION
+----------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .camera-reel-track,
+    .reel-badge {
+        animation: none;
+    }
+
+}
+
+
+@media (max-width: 1024px) {
+
+    .hero {
+        height: auto;
+        min-height: 0;
+    }
+
+    .hero-content {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+
+        padding-top: 105px;
+        padding-bottom: 40px;
+    }
+
+    .our-story {
+        padding-top: 0;
     }
 
 }
