@@ -166,16 +166,17 @@ body {
 }
 
 
+
 /* =====================================================
    MOVING NAV TEXT
 ===================================================== */
 
 .nav-marquee {
     position: absolute;
-    left: 50%;
-    top: 0;
-    transform: translateX(-50%);
-    width: 55%;
+    left: 210px;
+right: 260px;
+top: 0;
+width: auto;
     height: 90px;
     display: flex;
     align-items: center;
@@ -669,35 +670,40 @@ body {
     pointer-events: none;
 }
 
+
 .work-poster:nth-child(1)::after {
-    content: "THODAR KATHAI";
+    content: "JAMUN";
 }
 
 .work-poster:nth-child(2)::after {
-    content: "T T T";
+    content: "THODAR KATHAI";
 }
 
 .work-poster:nth-child(3)::after {
-    content: "BARBER PARADOX";
+    content: "T T T";
 }
 
 .work-poster:nth-child(4)::after {
-    content: "TEA ADIDHADI";
+    content: "BARBER PARADOX";
 }
 
 .work-poster:nth-child(5)::after {
-    content: "MALEVOLENT SMILE";
+    content: "TEA ADIDHADI";
 }
 
 .work-poster:nth-child(6)::after {
-    content: "SAAVIYA KAANOM";
+    content: "MALEVOLENT SMILE";
 }
 
 .work-poster:nth-child(7)::after {
-    content: "MANIPAYAA";
+    content: "SAAVIYA KAANOM";
 }
 
 .work-poster:nth-child(8)::after {
+    content: "MANIPAYAA";
+}
+
+.work-poster:nth-child(9)::after {
     content: "THANIMAI PODHUM";
 }
 
@@ -2277,7 +2283,7 @@ body {
     }
 
     .marquee-track span {
-        font-size: 7px;
+        font-size: 8px;
         letter-spacing: 2px;
         margin-right: 32px;
     }
@@ -2851,13 +2857,13 @@ body {
     right: 15px;
     bottom: 15px;
 
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
 
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 100%;
 
-    background: rgba(0, 0, 0, 0.55);
+    background: rgba(3, 3, 3, 0.55);
     color: white;
 
     display: flex;
@@ -2895,8 +2901,8 @@ body {
 @media (max-width: 768px) {
 
     .sound-btn {
-        width: 42px;
-        height: 42px;
+        width: 32px;
+        height: 32px;
         right: 12px;
         bottom: 12px;
         font-size: 16px;
@@ -3611,4 +3617,319 @@ video {
         padding-top: 0;
     }
 
+}
+/* =====================================================
+   NEBULA CINEMATIC LOADER
+===================================================== */
+
+.nebula-loader {
+    position: fixed;
+    inset: 0;
+
+    z-index: 99999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #000;
+
+    opacity: 1;
+    visibility: visible;
+
+    transition:
+        opacity 0.35s ease,
+        visibility 0.35s ease;
+
+    pointer-events: all;
+}
+
+.nebula-loader.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   MAIN LOADER
+===================================================== */
+
+.cinematic-loader {
+    width: 180px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+}
+
+
+/* =====================================================
+   ICON STAGE
+===================================================== */
+
+.loader-stage {
+    position: relative;
+
+    width: 70px;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* =====================================================
+   PRODUCTION ICONS
+===================================================== */
+
+.loader-icon {
+    position: absolute;
+
+    width: 48px;
+    height: 48px;
+
+    fill: none;
+
+    /* PURPLE THEME */
+    stroke: rgba(205, 145, 255, 0.95);
+
+    stroke-width: 2;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    opacity: 0;
+
+    transform: scale(0.75);
+
+    /* PURPLE GLOW */
+    filter:
+        drop-shadow(0 0 4px rgba(190, 100, 255, 0.45))
+        drop-shadow(0 0 12px rgba(150, 50, 255, 0.5));
+
+    animation:
+        cinematicIcon 1.5s ease-in-out infinite;
+}
+
+
+/* CAMERA */
+
+.camera-icon {
+    animation-delay: 0s;
+}
+
+
+/* MUSIC */
+
+.music-icon {
+    animation-delay: 0.375s;
+}
+
+
+/* SCRIPT */
+
+.script-icon {
+    animation-delay: 0.75s;
+}
+
+
+/* FILM */
+
+.film-icon {
+    animation-delay: 1.125s;
+}
+
+
+/* =====================================================
+   ICON SEQUENCE
+===================================================== */
+
+@keyframes cinematicIcon {
+
+    0% {
+        opacity: 0;
+        transform: scale(0.72);
+    }
+
+    5% {
+        opacity: 0;
+        transform: scale(0.72);
+    }
+
+    12% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    23% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    30% {
+        opacity: 0;
+        transform: scale(1.08);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.72);
+    }
+}
+
+
+/* =====================================================
+   PROGRESS LINE
+===================================================== */
+
+.loader-progress {
+    width: 100px;
+    height: 1px;
+
+    margin-top: 14px;
+
+    background: rgba(190, 100, 255, 0.15);
+
+    overflow: hidden;
+
+    position: relative;
+}
+
+.loader-progress::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    /* PURPLE PROGRESS */
+    background: rgba(190, 100, 255, 0.9);
+
+    transform: translateX(-100%);
+
+    animation: loaderProgress 1.5s ease-in-out forwards;
+
+    box-shadow:
+        0 0 5px rgba(190, 100, 255, 0.6),
+        0 0 10px rgba(150, 50, 255, 0.35);
+}
+
+
+@keyframes loaderProgress {
+
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+
+/* =====================================================
+   NEBULA PRODUCTION BRAND
+===================================================== */
+
+.loader-brand {
+
+    margin-top: 11px;
+
+    font-size: 7px;
+
+    letter-spacing: 3.5px;
+
+    /* PURPLE WHITE */
+    color: rgba(220, 175, 255, 0.75);
+
+    white-space: nowrap;
+
+    opacity: 0;
+
+    /* SOFT PURPLE GLOW */
+    text-shadow:
+        0 0 5px rgba(255, 255, 255, 0.35),
+        0 0 12px rgba(170, 80, 255, 0.35);
+
+    animation:
+        loaderBrand 1.5s ease forwards;
+}
+
+
+@keyframes loaderBrand {
+
+    0% {
+        opacity: 0;
+
+        text-shadow:
+            0 0 0 rgba(255,255,255,0),
+            0 0 0 rgba(170,80,255,0);
+    }
+
+    35% {
+        opacity: 0.65;
+
+        text-shadow:
+            0 0 5px rgba(255,255,255,0.35),
+            0 0 12px rgba(170,80,255,0.35);
+    }
+
+    55% {
+        opacity: 0.85;
+
+        text-shadow:
+            0 0 7px rgba(255,255,255,0.45),
+            0 0 18px rgba(170,80,255,0.5);
+    }
+
+    75% {
+        opacity: 0.7;
+
+        text-shadow:
+            0 0 5px rgba(255,255,255,0.35),
+            0 0 12px rgba(170,80,255,0.35);
+    }
+
+    100% {
+        opacity: 0.7;
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .cinematic-loader {
+        width: 150px;
+    }
+
+    .loader-stage {
+        width: 50px;
+        height: 50px;
+    }
+
+    .loader-icon {
+        width: 43px;
+        height: 43px;
+    }
+
+    .loader-progress {
+        width: 85px;
+    }
+
+    .loader-brand {
+        font-size: 8px;
+        letter-spacing: 3px;
+    }
 }
