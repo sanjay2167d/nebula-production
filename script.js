@@ -24,14 +24,32 @@ const contactForm =
 /* =====================================================
    OPEN CONTACT
 ===================================================== */
-
 if (contactBtn && contactOverlay) {
 
     contactBtn.addEventListener("click", function () {
 
-        contactOverlay.classList.add("active");
+        const nebulaLoader =
+            document.getElementById("nebulaLoader");
 
-        document.body.style.overflow = "hidden";
+        /* Show the same Nebula loader */
+        if (nebulaLoader) {
+
+            nebulaLoader.classList.remove("hide");
+
+        }
+
+        /* Open contact after loader animation */
+        setTimeout(function () {
+
+            if (nebulaLoader) {
+                nebulaLoader.classList.add("hide");
+            }
+
+            contactOverlay.classList.add("active");
+
+            document.body.style.overflow = "hidden";
+
+        }, 900);
 
     });
 
@@ -257,7 +275,7 @@ const totalWorks =
 let autoSlideTimer = null;
 
 /* Change poster every 4 seconds */
-const autoSlideDelay = 2000;
+const autoSlideDelay = 3000;
 
 
 /* =====================================================
@@ -765,7 +783,7 @@ if (starContainer) {
 
     /* Number of stars */
 
-    const starCount = 100;
+    const starCount = 40;
 
 
     for (let i = 0; i < starCount; i++) {
@@ -787,11 +805,11 @@ if (starContainer) {
             Math.random();
 
 
-        if (size < 0.55) {
+        if (size < 0.65) {
 
             star.classList.add("small");
 
-        } else if (size < 0.88) {
+        } else if (size < 0.95) {
 
             star.classList.add("medium");
 
@@ -897,3 +915,70 @@ if (cameraReelTrack) {
 }
 
 
+/* =====================================================
+   NEBULA PAGE LOADER
+===================================================== */
+
+window.addEventListener("load", function () {
+
+    const nebulaLoader =
+        document.getElementById("nebulaLoader");
+
+    if (!nebulaLoader) return;
+
+    setTimeout(function () {
+        nebulaLoader.classList.add("hide");
+    }, 2250);
+
+});
+
+/* =====================================================
+   NEBULA LOADER FOR POSTERS + FOOTER LINKS
+===================================================== */
+
+document.addEventListener("click", function (event) {
+
+    const clickedLink =
+        event.target.closest(
+            ".work-poster, .footer-social, .footer-contact-item"
+        );
+
+    if (!clickedLink) return;
+
+    /* Ignore links that do not have a destination */
+    const destination = clickedLink.href;
+
+    if (!destination) return;
+
+    /* Do not interfere with modifier-key clicks */
+    if (
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey ||
+        event.metaKey
+    ) {
+        return;
+    }
+
+    event.preventDefault();
+
+    const nebulaLoader =
+        document.getElementById("nebulaLoader");
+
+    /* If loader does not exist, use normal navigation */
+    if (!nebulaLoader) {
+        window.location.href = destination;
+        return;
+    }
+
+    /* Show loader */
+    nebulaLoader.classList.remove("hide");
+
+    /* Navigate after 1.5 seconds */
+    setTimeout(function () {
+
+        window.location.href = destination;
+
+    }, 1500);
+
+});
