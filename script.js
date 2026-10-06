@@ -783,7 +783,7 @@ if (starContainer) {
 
     /* Number of stars */
 
-    const starCount = 40;
+    const starCount = 20;
 
 
     for (let i = 0; i < starCount; i++) {
