@@ -45,60 +45,38 @@ body {
     }
 }
 
-/* The image is in HTML instead of body background to avoid
-   iPhone Safari's background-attachment/background-size issues. */
+
+/* FIXED NEBULA BACKGROUND */
 .site-background {
     position: fixed;
-    inset: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     width: 100%;
     height: 100vh;
-    height: 100svh;
-    height: 100dvh;
     overflow: hidden;
     z-index: -1;
     pointer-events: none;
     user-select: none;
     -webkit-user-select: none;
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
 }
 
 .site-background img {
+    display: block;
     width: 100%;
     height: 100%;
-    display: block;
     object-fit: cover;
     object-position: center center;
 }
 
-/* =====================================================
-   FIXED HTML BACKGROUND
-   Stable background rendering for iPhone / Safari
-===================================================== */
-
-.site-background {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100vh;
-    height: 100svh;
-    height: 100dvh;
-    overflow: hidden;
-    z-index: -1;
-    pointer-events: none;
-    user-select: none;
-    -webkit-user-select: none;
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
+@media (max-width: 768px) {
+    .site-background img {
+        animation: none !important;
+        transform: none !important;
+    }
 }
 
-.site-background img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-    object-position: center center;
-}
 
 /* =====================================================
    HERO
@@ -3933,11 +3911,12 @@ video {
         letter-spacing: 3px;
     }
 }
-/* FIX: KEEP NEBULA BACKGROUND STABLE ON MOBILE */
 
+/* FIX: KEEP NEBULA BACKGROUND STABLE ON MOBILE */
+/* 
 @media (max-width: 768px) {
     .site-background img {
         animation: none !important;
         transform: none !important;
     }
-}
+} */
