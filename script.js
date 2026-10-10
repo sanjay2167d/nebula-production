@@ -120,66 +120,43 @@ document.addEventListener("keydown", function (event) {
    SEND CONTACT FORM TO WHATSAPP
 ===================================================== */
 
+/* =====================================================
+   SEND CONTACT FORM TO WHATSAPP - FIXED
+===================================================== */
+
 if (contactForm) {
-
     contactForm.addEventListener("submit", function (event) {
-
         event.preventDefault();
-
-
-        /* =================================================
-           WHATSAPP NUMBER
-        ================================================= */
 
         const whatsappNumber = "919789976929";
 
-
-        /* =================================================
-           GET FORM VALUES
-        ================================================= */
-
-        const name =
-            document.getElementById("fullName").value.trim();
-
-
-        const email =
-            document.getElementById("email").value.trim();
-
-
-        const phone =
-            document.getElementById("phone").value.trim();
-
+        // Get form values safely
+        const name = document.getElementById("fullName").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const phone = document.getElementById("phone").value.trim();
 
         const company =
-            document.getElementById("company").value.trim()
-            || "Not provided";
-
-
-        const projectType =
-            document.getElementById("projectType").value;
-
+            document.getElementById("company").value.trim() ||
+            "Not provided";
 
         const projectDetails =
             document.getElementById("projectDetails").value.trim();
 
+        const contactMethod =
+            document.getElementById("contactMethod").value ||
+            "Not specified";
+
+        // These fields are not currently present in your HTML
+        const projectType =
+            document.getElementById("projectType")?.value ||
+            "Not provided";
 
         const budget =
-            document.getElementById("budget").value
-            || "Not provided";
+            document.getElementById("budget")?.value ||
+            "Not provided";
 
-
-        const contactMethod =
-            document.getElementById("contactMethod").value
-            || "Not specified";
-
-
-        /* =================================================
-           WHATSAPP MESSAGE
-        ================================================= */
-
-        const message =
-
-`*NEW PROJECT ENQUIRY*
+        // Prepare WhatsApp message
+        const message = `*NEW PROJECT ENQUIRY*
 
 *Full Name:*
 ${name}
@@ -205,33 +182,59 @@ ${budget}
 *Preferred Contact Method:*
 ${contactMethod}
 
---------------------------------
-
 Sent through The Nebula Production website.`;
 
-
-        /* =================================================
-           WHATSAPP URL
-        ================================================= */
-
+        // Create WhatsApp link
         const whatsappURL =
             "https://wa.me/" +
             whatsappNumber +
             "?text=" +
             encodeURIComponent(message);
 
+            
+const successPopup = document.createElement("div");
 
-        /* =================================================
-           OPEN WHATSAPP
-        ================================================= */
+successPopup.innerHTML = `
+    <div style="font-size:28px;color:#b58aff;margin-bottom:12px;">✓</div>
+    <h3 style="margin:0 0 10px;">Message Received!</h3>
+    <p style="margin:0;color:#ddd;line-height:1.6;">
+        Thank you for contacting The Nebula Production.
+        We'll contact you shortly.
+    </p>
+`;
 
-        window.open(
-            whatsappURL,
-            "_blank"
-        );
+Object.assign(successPopup.style, {
+    position: "fixed",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "min(85%, 340px)",
+    padding: "28px 22px",
+    background: "#100d18",
+    color: "#fff",
+    border: "1px solid #a66cff",
+    borderRadius: "16px",
+    boxShadow: "0 0 30px rgba(166,108,255,0.3)",
+    textAlign: "center",
+    fontFamily: "inherit",
+    zIndex: "999999",
+    opacity: "0",
+    transition: "opacity 0.25s ease"
+});
 
+document.body.appendChild(successPopup);
+
+requestAnimationFrame(() => {
+    successPopup.style.opacity = "1";
+});
+
+setTimeout(() => {
+    window.location.href = whatsappURL;
+}, 1500);
+
+        // Open WhatsApp
+        
     });
-
 }
 
 
@@ -275,7 +278,7 @@ const totalWorks =
 let autoSlideTimer = null;
 
 /* Change poster every 4 seconds */
-const autoSlideDelay = 3000;
+const autoSlideDelay = 3500;
 
 
 /* =====================================================
