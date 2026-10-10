@@ -3933,3 +3933,33 @@ video {
         letter-spacing: 3px;
     }
 }
+
+/* =========================================
+   MOBILE BACKGROUND POSITION FIX
+   NEBULA PRODUCTION
+========================================= */
+
+@media (max-width: 768px) {
+
+    .site-background {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    .site-background img {
+        position: absolute;
+        inset: 0;
+
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+        object-position: center center;
+    }
+
+}
