@@ -3920,3 +3920,9 @@ video {
         transform: none !important;
     }
 } */
+
+/* PERFORMANCE TEST — BACKGROUND ONLY */
+.site-background img {
+    animation: none !important;
+    transform: none !important;
+}
